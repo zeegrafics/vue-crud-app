@@ -1,13 +1,20 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <Navbar></Navbar>
+    <Sidebar></Sidebar>
     <router-view/>
   </div>
 </template>
-
+<script>
+import Navbar from './components/common/Navbar'
+import Sidebar from './components/common/Sidebar'
+export default {
+  components: {
+    Navbar,
+    Sidebar
+  }
+}
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
