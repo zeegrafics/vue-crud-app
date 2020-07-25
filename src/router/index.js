@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../components/Home.vue'
 import About from '../components/About.vue'
 import AddSupplier from '../components/Suppliers/AddSupplier'
+import SupplierList from '../components/Suppliers/SupplierList'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ Vue.use(VueRouter)
     path: '/addsupplier',
     name: 'AddSupplier',
     component: AddSupplier
+  },
+  {
+    path: '/suppliers',
+    name: 'SupplierList',
+    component: SupplierList
   }
 ]
 
