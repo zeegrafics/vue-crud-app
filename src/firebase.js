@@ -20,7 +20,11 @@ const firebaseConfig = {
   
   // firebase collections
   const suppCollection = db.collection('suppliers');
+  const catCollection = db.collection('categories');
+  const prodCollection = db.collection('products');
 
   export {
-      suppCollection
+      suppCollection,
+      catCollection,
+      prodCollection
   }

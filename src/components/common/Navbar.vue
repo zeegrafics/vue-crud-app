@@ -2,18 +2,40 @@
     <div>
   <b-navbar toggleable="lg" type="dark" variant="info">
     
-    <b-button variant="light" v-b-toggle.sidebar-no-header><b-icon-list></b-icon-list></b-button>
-    <b-navbar-brand href="#" class="ml-2">NavBar</b-navbar-brand>
+    <!--<b-button variant="light" v-b-toggle.sidebar-no-header><b-icon-list></b-icon-list></b-button>-->
+    <b-navbar-brand href="#" class="ml-2">IMS</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item href="/About">About</b-nav-item>
+        <b-nav-item-dropdown text="Suppliers">
+          <b-dropdown-item><router-link to="/addsupplier">Add Supplier</router-link></b-dropdown-item>
+          <b-dropdown-item><router-link to="/suppliers">Suppliers List</router-link></b-dropdown-item>
+        </b-nav-item-dropdown>
+        <b-nav-item-dropdown text="Products">
+          <b-dropdown-item><router-link to="/addcategory">Add Category</router-link></b-dropdown-item>
+          <b-dropdown-item><router-link to="/categories">Category List</router-link></b-dropdown-item>
+          <b-dropdown-item><router-link to="/addproduct">Add Product</router-link></b-dropdown-item>
+          <b-dropdown-item><router-link to="/products">Products List</router-link></b-dropdown-item>
+        </b-nav-item-dropdown>
+        <b-nav-item-dropdown text="Purchase">
+          <b-dropdown-item><router-link to="/">Add Purchase</router-link></b-dropdown-item>
+          <b-dropdown-item><router-link to="/">Purchase History</router-link></b-dropdown-item>
+        </b-nav-item-dropdown>
+        <b-nav-item-dropdown text="Sale">
+          <b-dropdown-item><router-link to="/">Add Sale</router-link></b-dropdown-item>
+          <b-dropdown-item><router-link to="/">Sales History</router-link></b-dropdown-item>
+        </b-nav-item-dropdown>
+        <b-nav-item-dropdown text="Reports">
+          <b-dropdown-item><router-link to="/">Purchase Report</router-link></b-dropdown-item>
+          <b-dropdown-item><router-link to="/">Sales Report</router-link></b-dropdown-item>
+          <b-dropdown-item><router-link to="/">Inventory Report</router-link></b-dropdown-item>
+        </b-nav-item-dropdown>
       </b-navbar-nav>
 
-      <!-- Right aligned nav items -->
-      <b-navbar-nav class="ml-auto">
+      
+      <!--<b-navbar-nav class="ml-auto">
         <b-nav-form>
           <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
           <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
@@ -27,14 +49,14 @@
         </b-nav-item-dropdown>
 
         <b-nav-item-dropdown right>
-          <!-- Using 'button-content' slot -->
+          
           <template v-slot:button-content>
             <em>User</em>
           </template>
           <b-dropdown-item href="#">Profile</b-dropdown-item>
           <b-dropdown-item href="#">Sign Out</b-dropdown-item>
         </b-nav-item-dropdown>
-      </b-navbar-nav>
+      </b-navbar-nav>-->
     </b-collapse>
   </b-navbar>
 </div>

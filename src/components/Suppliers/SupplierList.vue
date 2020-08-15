@@ -25,7 +25,8 @@ export default {
     },
     computed: {
       ...mapGetters([
-        'suppliers'
+        'suppliers',
+        'products'
       ]),
     },
     watch:{
@@ -34,6 +35,7 @@ export default {
       }
     },
     mounted(){
+        console.log(this.products);
         this.loadAllSuppliers();
     },
     methods: {
