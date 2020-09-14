@@ -54,11 +54,6 @@
                 <b-btn variant="success" class="ml-1" @click="addNewCategory()">Save</b-btn>
             </b-col>
         </b-row>
-        <b-row class="m-1 form-row">
-            <b-col class="d-flex">
-              <Confirm :status="isDiscount"></Confirm>
-            </b-col>
-        </b-row>
         <b-toast id="category-post-toast" title="Operation Successfull" autoHideDelay="2000">
         Category Has been saved Successfully!
         </b-toast>
@@ -66,11 +61,9 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import Confirm from '../Shared/Confirm'
 export default {
     name: 'AddCategory',
     components: {
-      Confirm
     },
     data() {
       return {

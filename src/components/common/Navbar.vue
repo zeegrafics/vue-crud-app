@@ -24,7 +24,7 @@
           <b-dropdown-item><router-link to="/">Purchase History</router-link></b-dropdown-item>
         </b-nav-item-dropdown>
         <b-nav-item-dropdown text="Sale">
-          <b-dropdown-item><router-link to="/">Add Sale</router-link></b-dropdown-item>
+          <b-dropdown-item><router-link to="/addsale">Add Sale</router-link></b-dropdown-item>
           <b-dropdown-item><router-link to="/">Sales History</router-link></b-dropdown-item>
         </b-nav-item-dropdown>
         <b-nav-item-dropdown text="Reports">
@@ -35,8 +35,8 @@
       </b-navbar-nav>
 
       
-      <!--<b-navbar-nav class="ml-auto">
-        <b-nav-form>
+      <b-navbar-nav class="ml-auto">
+        <!--<b-nav-form>
           <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
           <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
         </b-nav-form>
@@ -46,25 +46,49 @@
           <b-dropdown-item href="#">ES</b-dropdown-item>
           <b-dropdown-item href="#">RU</b-dropdown-item>
           <b-dropdown-item href="#">FA</b-dropdown-item>
-        </b-nav-item-dropdown>
+        </b-nav-item-dropdown>-->
 
         <b-nav-item-dropdown right>
           
           <template v-slot:button-content>
             <em>User</em>
           </template>
-          <b-dropdown-item href="#">Profile</b-dropdown-item>
-          <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+          <b-dropdown-item>
+            <router-link to="/login" v-if="loggedInUser === null">Login</router-link>
+            <b-button v-else @click="logout()" variant="outline">LogOut</b-button>
+          </b-dropdown-item>
         </b-nav-item-dropdown>
-      </b-navbar-nav>-->
+      </b-navbar-nav>
     </b-collapse>
   </b-navbar>
 </div>
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
+const fb = require('../../firebase')
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  computed:{
+    ...mapGetters([
+      'loggedInUser'
+    ])
+  },
+  methods:{
+    ...mapMutations([
+      'saveLogout'
+    ]),
+    logout(){
+      fb.auth.signOut().then(function(res) {
+        // Sign-out successful.
+        console.log(res);
+        this.saveLogout();
+        this.$router.push('/login');
+      }).catch(function(error) {
+        // An error happened.
+      });
+    }
+  }
 }
 </script>
 

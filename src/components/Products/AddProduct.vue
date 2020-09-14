@@ -94,6 +94,9 @@
                 <b-btn variant="success" class="ml-1" @click="addNewProduct()">Save</b-btn>
             </b-col>
         </b-row>
+        <b-toast id="product-post-toast" title="Operation Successfull" autoHideDelay="2000">
+        Product saved Successfully!
+        </b-toast>
     </b-container>
 </template>
 <script>
@@ -114,7 +117,9 @@ export default {
           tax: null,
           promotion: null,
         },
-        categoryOptions: [],
+        categoryOptions: [
+          { value: null, text: 'Please select an option' }
+        ],
         discountOptions: [
           { value: null, text: 'Please select an option' }
         ],
@@ -135,20 +140,65 @@ export default {
     watch:{
     },
     mounted(){
+      this.getCategories();
     },
     methods: {
       ...mapActions([
+        'loadCategories',
         'addProduct'
       ]),
+      resetForm(){
+        this.product = {
+          sku: null,
+          name: null,
+          description: null,
+          buyingPrice: null,
+          sellingPrice: null,
+          quantity: null,
+          notifyQuantity: null,
+          discount: null,
+          tax: null,
+          promotion: null,
+        }
+        this.categoryOptions = [
+          { value: null, text: 'Please select an option' }
+        ]
+        this.categoryOptions = [
+          { value: null, text: 'Please select an option' }
+        ]
+        this.categoryOptions = [
+          { value: null, text: 'Please select an option' }
+        ]
+      },
+      getCategories(){
+        this.loadCategories().then((res) => {
+          res.forEach(cat => {
+              this.categoryOptions.push({
+                value: cat.id,
+                text: cat.data.name
+              })
+          });
+        });
+      },
       addNewProduct(){
           this.addProduct({
-            "name": this.product.name,
-            "buyingPrice": this.product.buyingPrice,
-            "sellingPrice": this.product.sellingPrice,
-            "quantity": this.product.quantity
+            category: this.product.category,
+            sku: this.product.sku,
+            name: this.product.name,
+            description: this.product.description,
+            buyingPrice: this.product.buyingPrice,
+            sellingPrice: this.product.sellingPrice,
+            quantity: this.product.quantity,
+            notifyQuantity: this.product.notifyQuantity,
+            discount: this.product.discount,
+            tax: this.product.tax,
+            promotion: this.product.promotion,
           })
-          .then(() => {
-              //console.log(this.products);
+          .then((res) => {
+            if(res){
+              this.$bvToast.show('product-post-toast');
+              this.resetForm();
+            }
           });
       }
     }    

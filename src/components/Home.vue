@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>Welcome</h1>
+    <h1>Welcome {{ loggedInUser }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -32,9 +32,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'Home',
   props: {
+  },
+  computed: {
+    ...mapGetters([
+        'loggedInUser'
+    ]),
   }
 }
 </script>
